@@ -1,0 +1,91 @@
+{
+  "packaged": true,
+  "captures": [
+    {
+      "view": "sticky",
+      "file": "<workspace>\\test-results\\native-window-corners-sticky-packaged.png",
+      "bounds": {
+        "x": 80,
+        "y": 60,
+        "width": 360,
+        "height": 560
+      },
+      "scaleX": 1.4997070884592854,
+      "scaleY": 1.5,
+      "margin": 10,
+      "background": [
+        202,
+        60,
+        144
+      ],
+      "corners": [
+        [
+          202,
+          60,
+          144
+        ],
+        [
+          202,
+          60,
+          144
+        ],
+        [
+          202,
+          60,
+          144
+        ],
+        [
+          202,
+          60,
+          144
+        ]
+      ]
+    },
+    {
+      "view": "main",
+      "file": "<workspace>\\test-results\\native-window-corners-main-packaged.png",
+      "bounds": {
+        "x": 80,
+        "y": 60,
+        "width": 981,
+        "height": 701
+      },
+      "scaleX": 1.4997070884592854,
+      "scaleY": 1.5,
+      "margin": 10,
+      "background": [
+        202,
+        60,
+        144
+      ],
+      "corners": [
+        [
+          202,
+          60,
+          144
+        ],
+        [
+          202,
+          60,
+          144
+        ],
+        [
+          202,
+          60,
+          144
+        ],
+        [
+          202,
+          60,
+          144
+        ]
+      ]
+    }
+  ],
+  "checks": [
+    "maximized/restored/fullscreen state query and event bridge",
+    "sticky native composed corners are clipped, with no rectangular backdrop",
+    "main native composed corners are clipped, with no rectangular backdrop"
+  ],
+  "ok": true
+}

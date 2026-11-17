@@ -1,0 +1,51 @@
+{
+  "ok": true,
+  "version": "2.0.0",
+  "author": "whh",
+  "checkedAt": "2026-11-17T14:16:54.276Z",
+  "entries": [
+    {
+      "path": "dist/main/main.js",
+      "sha256": "bcc949ee8ec71c403e7a38db4e9a2827d8813f4f829779a03baa018c0fab7b70"
+    },
+    {
+      "path": "dist/main/main.js.map",
+      "sha256": "e1d8f37b40110c29bd4981c30bdbf104ef584d39a2661ee8971004061c91b483"
+    },
+    {
+      "path": "dist/main/preload.js",
+      "sha256": "922878e1df418ebd2e0343ff1b5faca02099246388dd5fcbc19cc7e82fdd45e1"
+    },
+    {
+      "path": "dist/main/preload.js.map",
+      "sha256": "462f69dfc9678d334ab5d6fb872269bce6c54be9050506174bf7e63f339ff724"
+    },
+    {
+      "path": "dist/renderer/assets/icon-ZHzAGlwJ.png",
+      "sha256": "26a5253e6ca82b2315ffc27f2e7a810bca806b8258a046765c8df056f99cb853"
+    },
+    {
+      "path": "dist/renderer/assets/index-BFQc9YQm.js",
+      "sha256": "cff2d5cd48102580eb409e4518134fe211c8db6ccde8c522bd6b0e0b59d89e03"
+    },
+    {
+      "path": "dist/renderer/assets/index-k3REa3_4.css",
+      "sha256": "8f321ee7620221f4b4cf023d1553f05bbeaa840c441a9ae52167d061ab53f578"
+    },
+    {
+      "path": "dist/renderer/index.html",
+      "sha256": "921f5547fa3298b2780378270f5c23e756a81e130e65a197f0be03b2ca30e0fa"
+    },
+    {
+      "path": "node_modules/better-sqlite3/prebuilds/win32-x64.node",
+      "sha256": "d527af8fe1706a91696f42979319fe715444dc7f02c94d8c22e126201faec169"
+    }
+  ],
+  "final": {
+    "checkedAt": "2026-11-17T14:24:52.175Z",
+    "asarSha256": "c871e7af8e8472d1746cfaaada2787db76e341202c83eeb180c3d4a03712a31d",
+    "exeSha256": "6b00671e272b34f0b66febf1d0fa170a4a535aa93dee43c3007ec73483edc551",
+    "applicationFilesMatchValidatedBuild": true,
+    "documentationMatchesSource": true
+  }
+}

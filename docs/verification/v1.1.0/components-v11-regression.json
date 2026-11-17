@@ -1,0 +1,30 @@
+{
+  "ok": true,
+  "initialHeight": 58,
+  "wideHeight": 239,
+  "rootFontResize": {
+    "before": {
+      "width": 218,
+      "height": 480,
+      "font": 12.18
+    },
+    "after": {
+      "width": 218,
+      "height": 793,
+      "scrollHeight": 792,
+      "clientHeight": 792
+    }
+  },
+  "checks": [
+    "date fields always visible",
+    "inherit dates and editing to explicit range",
+    "same-row mode buttons",
+    "distinct period icons",
+    "two-line notes",
+    "content and width autosizing",
+    "asynchronous root-font autosizing at fixed width",
+    "IME autosave guard",
+    "failed save retry",
+    "fixed close button with scrolling modal body"
+  ]
+}

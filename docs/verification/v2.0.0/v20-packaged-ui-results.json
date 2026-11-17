@@ -1,0 +1,28 @@
+{
+  "checks": [
+    "Startup: only sticky, Today default, four tabs",
+    "Sticky appearance action is in the title bar before pinning",
+    "Collapsed note expands before opening appearance settings",
+    "Default creation uses local calendar date",
+    "Unscheduled compound option places task in inbox",
+    "Flat single-node project plan and unfinished-first card order",
+    "Note grid includes saved remarks; bilingual branding and larger space headings",
+    "Two-line cards, project folding, due-date color and persistent grid columns",
+    "Cancel plan shares the date row and primary action style",
+    "Schedule modes keep both fields visible and display parent dates",
+    "Independent progress snaps by ten; keyboard+blur sends one update",
+    "Untouched legacy progress is preserved; mouse dragging snaps correctly",
+    "Strike-through and notes editable after completion",
+    "Two-window sync, compact groups and fixed sticky settings close button",
+    "Week and month use calendar dates only",
+    "Global search opens matching task",
+    "Background import, cross-window image display, visible blur control, removal and balanced settings",
+    "Transparent main window supports all eight resize directions",
+    "Balanced preview, visible workspace footer, single round frame and maximized fill",
+    "Theme, font size and reduced motion sync",
+    "Aligned map inspector and automatically expanding two-line notes",
+    "Integrated right-click creation and approved depth expansion",
+    "No renderer exceptions"
+  ],
+  "errors": []
+}

@@ -1,0 +1,31 @@
+node_modules/
+dist/
+out/
+test-results/
+.vite/
+*.log
+.local-data/
+
+# Release assets are distributed through GitHub Releases.
+releases/
+
+# Personal data, credentials, caches and editor state.
+data/
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Keep the icon source needed by `pnpm icons`, not design scratch files.
+UI Reference/*
+!UI Reference/MindNote-1.1-用户图标.png
+

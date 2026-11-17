@@ -1,0 +1,8 @@
+node_modules
+dist
+out
+.local-data
+test-results
+pnpm-lock.yaml
+assets
+THIRD_PARTY_NOTICES.md

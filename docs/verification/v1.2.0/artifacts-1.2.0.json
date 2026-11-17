@@ -1,0 +1,56 @@
+{
+  "version": "1.2.0",
+  "installer": {
+    "path": "<workspace>\\out\\make\\nsis\\x64\\MindNote-1.2.0-Setup.exe",
+    "bytes": 118447974,
+    "MiB": 112.96,
+    "sha256": "961d4814b72ba21cd393a7f356f8af4984de220fc2f16c9d9ed2c5b49ae3d5a8",
+    "fileVersion": "1.2.0",
+    "productVersion": "1.2.0",
+    "companyName": "whh",
+    "productName": "MindNote",
+    "signature": "NotSigned",
+    "executed": false
+  },
+  "application": {
+    "fileVersion": "1.2.0",
+    "productVersion": "1.2.0",
+    "companyName": "whh",
+    "productName": "MindNote"
+  },
+  "compiler": {
+    "name": "NSIS",
+    "version": "3.13",
+    "warningsAsErrors": true,
+    "compileSucceeded": true
+  },
+  "installerFeatures": {
+    "directorySelection": true,
+    "defaultDirectory": "LocalAppData\\Programs\\MindNote",
+    "dataDirectory": "InstallDir\\data",
+    "writabilityCheckedInWizardAndSection": true,
+    "desktopShortcut": "MindNote",
+    "publisherMetadata": "whh",
+    "uninstallPreservesData": true
+  },
+  "nativeBuildUnchanged": true,
+  "nativeBuildFiles": [
+    {
+      "file": "dist\\main\\main.js",
+      "sha256": "903984848bb61e409d59113978b678edb7c91b0f4aff607390e618235da0ae8a"
+    },
+    {
+      "file": "dist\\main\\main.js.map",
+      "sha256": "f51e447a6e2e408a9853f2ad28db95cb6005b8f072fd2043e605a3596e287a4b"
+    },
+    {
+      "file": "dist\\main\\preload.js",
+      "sha256": "922878e1df418ebd2e0343ff1b5faca02099246388dd5fcbc19cc7e82fdd45e1"
+    },
+    {
+      "file": "dist\\main\\preload.js.map",
+      "sha256": "462f69dfc9678d334ab5d6fb872269bce6c54be9050506174bf7e63f339ff724"
+    }
+  ],
+  "resourceManifest": "test-results/package-integrity.json"
+}

@@ -1,0 +1,89 @@
+{
+  "ok": true,
+  "initialMaxConnectionError": 0.6667081119972312,
+  "foldResults": [
+    0.6666634082837894,
+    0.6666634082837894,
+    0.6666634082837894,
+    0.6666634082837894,
+    0.6666634082837894,
+    0.6666634082837894,
+    0.6666634082837894,
+    0.6666634082837894,
+    0.6666634082837894,
+    0.6666634082837894,
+    0.6666634082837894,
+    0.6666634082837894
+  ],
+  "cases": [
+    {
+      "fontSize": 14,
+      "zoom": 70,
+      "nodeHeight": 83.30001068115234,
+      "maxConnectionError": 0.6599521499531064
+    },
+    {
+      "fontSize": 14,
+      "zoom": 100,
+      "nodeHeight": 119.00001525878906,
+      "maxConnectionError": 0.9428479714318944
+    },
+    {
+      "fontSize": 14,
+      "zoom": 140,
+      "nodeHeight": 166.60000610351562,
+      "maxConnectionError": 1.3199366677952573
+    },
+    {
+      "fontSize": 18,
+      "zoom": 70,
+      "nodeHeight": 86.0999755859375,
+      "maxConnectionError": 0.46672868750286917
+    },
+    {
+      "fontSize": 18,
+      "zoom": 100,
+      "nodeHeight": 123.00001525878906,
+      "maxConnectionError": 0.6666775941892459
+    },
+    {
+      "fontSize": 18,
+      "zoom": 140,
+      "nodeHeight": 172.1999969482422,
+      "maxConnectionError": 0.9333658222714059
+    }
+  ],
+  "colors": {
+    "light": {
+      "root": "rgb(41, 69, 116)",
+      "main": "rgb(234, 240, 247)",
+      "leaf": "rgb(255, 255, 255)",
+      "lines": [
+        "#718BAD"
+      ]
+    },
+    "dark": {
+      "root": "rgb(68, 105, 155)",
+      "main": "rgb(40, 59, 83)",
+      "leaf": "rgb(43, 51, 65)",
+      "lines": [
+        "#8EA9CC"
+      ]
+    }
+  },
+  "completed": {
+    "dark": {
+      "color": "rgb(231, 198, 107)",
+      "thickness": "2px",
+      "line": "line-through",
+      "fill": "rgb(43, 51, 65)"
+    },
+    "light": {
+      "color": "rgb(198, 157, 53)",
+      "thickness": "2px",
+      "line": "line-through",
+      "fill": "rgb(255, 255, 255)"
+    }
+  },
+  "bottomGap": 8.000038146972656
+}

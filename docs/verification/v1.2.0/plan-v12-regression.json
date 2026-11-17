@@ -1,0 +1,41 @@
+{
+  "ok": true,
+  "checks": [
+    "Completion keeps original position when all rows fit",
+    "Resize overflow alone does not trigger delayed completion movement",
+    "A new completion in an overflowing list sinks finished items once",
+    "Resize and completed-item visibility changes remain stable",
+    "Switching plan filters establishes a fresh canonical order",
+    "A completion in a collapsed project does not displace hidden rows",
+    "Full card notes participate in actual overflow and completion sorting",
+    "Completed title uses a bold warm strike-through"
+  ],
+  "metrics": [
+    {
+      "case": "fit",
+      "client": 360,
+      "scroll": 360,
+      "overflow": "false"
+    },
+    {
+      "case": "overflow",
+      "client": 120,
+      "scroll": 257,
+      "overflow": "true"
+    },
+    {
+      "case": "full-card-notes",
+      "client": 250,
+      "scroll": 725,
+      "overflow": "true",
+      "noteHeight": 390
+    }
+  ],
+  "completedStyle": {
+    "weight": "700",
+    "line": "line-through",
+    "thickness": "2px",
+    "color": "rgb(155, 116, 21)"
+  },
+  "errors": []
+}

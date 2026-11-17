@@ -1,0 +1,23 @@
+{
+  "version": "2.0.0",
+  "createdAt": "2026-11-17T22:27:37.0070621+08:00",
+  "installer": {
+    "name": "MindNote-2.0.0-Setup.exe",
+    "bytes": 118368073,
+    "sha256": "f310b2c1e6401ed6e2753be89a7d1c9c1687f81f2bd0e28ef36ed880da3abf67",
+    "fileVersion": "2.0.0",
+    "productVersion": "2.0.0",
+    "company": "whh",
+    "product": "MindNote"
+  },
+  "application": {
+    "fileVersion": "2.0.0",
+    "productVersion": "2.0.0",
+    "company": "whh",
+    "product": "MindNote"
+  },
+  "sourceArchive": "MindNote-2.0.0-source.zip",
+  "installerCompiledWithoutWarnings": true,
+  "installerExecuted": false,
+  "personalDataIncluded": false
+}

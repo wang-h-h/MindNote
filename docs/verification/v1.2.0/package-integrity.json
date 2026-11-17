@@ -1,0 +1,103 @@
+{
+  "version": "1.2.0",
+  "files": [
+    {
+      "file": "dist\\main\\main.js",
+      "sha256": "903984848bb61e409d59113978b678edb7c91b0f4aff607390e618235da0ae8a"
+    },
+    {
+      "file": "dist\\main\\main.js.map",
+      "sha256": "f51e447a6e2e408a9853f2ad28db95cb6005b8f072fd2043e605a3596e287a4b"
+    },
+    {
+      "file": "dist\\main\\preload.js",
+      "sha256": "922878e1df418ebd2e0343ff1b5faca02099246388dd5fcbc19cc7e82fdd45e1"
+    },
+    {
+      "file": "dist\\main\\preload.js.map",
+      "sha256": "462f69dfc9678d334ab5d6fb872269bce6c54be9050506174bf7e63f339ff724"
+    },
+    {
+      "file": "dist\\renderer\\assets\\icon-ZHzAGlwJ.png",
+      "sha256": "26a5253e6ca82b2315ffc27f2e7a810bca806b8258a046765c8df056f99cb853"
+    },
+    {
+      "file": "dist\\renderer\\assets\\index-Cu3po2_o.js",
+      "sha256": "6085075609e96535080b8c0d61bb36fb6c5306a2d37bd406b021ca903e2f101f"
+    },
+    {
+      "file": "dist\\renderer\\assets\\index-Dr5ZPfjc.css",
+      "sha256": "f6a8b53e7a58a412d299ee2b8ff2c58ce3405bef9aaacc326d6aacab93acba1f"
+    },
+    {
+      "file": "dist\\renderer\\index.html",
+      "sha256": "480e4422929c4d1deb159f08ae1efc6dd5ff48d2e948e861f880de356afb6ee0"
+    },
+    {
+      "file": "docs\\design\\v1.2-palette-options.png",
+      "sha256": "29e2c342507c134cbe282d12cbc25dd786519708545e3e6d88c78bdf4c39de32"
+    },
+    {
+      "file": "docs\\design\\v1.2-palette-options.svg",
+      "sha256": "781994727895f0deae841338b5deb2ef6a14aba9af161d2424744bd7eaca4d01"
+    },
+    {
+      "file": "docs\\RELEASE_NOTES.zh-CN.md",
+      "sha256": "f4ff5df13876c0fb4bb4cca8dbc7375461e361168933261051e76ed8b76a9312"
+    },
+    {
+      "file": "docs\\USER_GUIDE.zh-CN.md",
+      "sha256": "e50a9b7889e42cfc6d67ef88beefbdf4f4d01dfbd60b2740058ea5429d706e27"
+    },
+    {
+      "file": "docs\\VALIDATION-1.0.md",
+      "sha256": "90093c4d91514c48032a5293e56219aab2541aa9003209f1f3343e5b57a96073"
+    },
+    {
+      "file": "docs\\VALIDATION-1.1.md",
+      "sha256": "a4109713496013b75e0c4766011136e5fd4c0ec3827c0317b8727ad7faa1cbeb"
+    },
+    {
+      "file": "docs\\VALIDATION.md",
+      "sha256": "f2e4d495049615b2232d4ccf4818f091338ec6459797a6134ffff8c665686eee"
+    },
+    {
+      "file": "README.md",
+      "sha256": "d4da9b293d8c70e07840b21055a4787768e906a7cd18d174b0529dc31164b083"
+    },
+    {
+      "file": "THIRD_PARTY_NOTICES.md",
+      "sha256": "bd8279d24fe735a3ba3fa8f41f8d96eb727774b192d5a3b75fb05b0630037417"
+    }
+  ],
+  "assets": [
+    {
+      "file": "assets\\icon.ico",
+      "sha256": "e59eecd0eccb6bbce5d60e87f98fffb56757aa9b625529ee8c79266bb6a80ca8"
+    },
+    {
+      "file": "assets\\icon.png",
+      "sha256": "26a5253e6ca82b2315ffc27f2e7a810bca806b8258a046765c8df056f99cb853"
+    },
+    {
+      "file": "assets\\icon.svg",
+      "sha256": "3d3d43f2f9540029e8efb1e4daf1acfd5f1dba4c2bdcc50a2f389e55757ac5fe"
+    },
+    {
+      "file": "assets\\tray.png",
+      "sha256": "44cee433207e8d27ccc0e45dfcd13be108cedf3a09f8647c52aa49239e02ad42"
+    },
+    {
+      "file": "assets\\tray.svg",
+      "sha256": "e72f82cd44b30a8dddcc10e9336c854b2a2cb44f8b2c49a5b10cbff23f5e7519"
+    }
+  ],
+  "native": [
+    {
+      "file": "node_modules/better-sqlite3/prebuilds/win32-x64.node",
+      "sha256": "d527af8fe1706a91696f42979319fe715444dc7f02c94d8c22e126201faec169",
+      "bytes": 2021888
+    }
+  ],
+  "ok": true
+}

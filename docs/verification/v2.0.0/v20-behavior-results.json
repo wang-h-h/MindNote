@@ -1,0 +1,376 @@
+{
+  "packaged": false,
+  "dataDir": "<workspace>\\.local-data\\v20-behavior-1794924505754",
+  "checks": [
+    "Real slider drags keep yesterday, 21-day overdue and today completions visible in both Today views",
+    "Three Monday-based weeks, project grouping and completed overdue retention; no obsolete Today/week navigation",
+    "Light/dark Today, week and mind-map completion preserve font size, weight and text color; yellow 3px line only",
+    "Only explicit hide-completed removes completed rows; turning it off restores them, and archive remains accessible",
+    "Rightmost close button hides the native note without destroying data; showSticky restores it",
+    "No renderer exceptions"
+  ],
+  "errors": [],
+  "metrics": [
+    {
+      "label": "sticky today overdue-yesterday",
+      "theme": "light",
+      "before": {
+        "color": "rgb(37, 43, 55)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "none",
+        "decorationColor": "rgb(37, 43, 55)",
+        "thickness": "auto",
+        "opacity": "1"
+      },
+      "after": {
+        "color": "rgb(37, 43, 55)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "line-through",
+        "decorationColor": "rgb(229, 183, 61)",
+        "thickness": "3px",
+        "opacity": "1"
+      }
+    },
+    {
+      "label": "main today overdue-yesterday",
+      "theme": "light",
+      "before": {
+        "color": "rgb(37, 43, 55)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "none",
+        "decorationColor": "rgb(37, 43, 55)",
+        "thickness": "auto",
+        "opacity": "1"
+      },
+      "after": {
+        "color": "rgb(37, 43, 55)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "line-through",
+        "decorationColor": "rgb(229, 183, 61)",
+        "thickness": "3px",
+        "opacity": "1"
+      }
+    },
+    {
+      "label": "sticky today overdue-old",
+      "theme": "light",
+      "before": {
+        "color": "rgb(37, 43, 55)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "none",
+        "decorationColor": "rgb(37, 43, 55)",
+        "thickness": "auto",
+        "opacity": "1"
+      },
+      "after": {
+        "color": "rgb(37, 43, 55)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "line-through",
+        "decorationColor": "rgb(229, 183, 61)",
+        "thickness": "3px",
+        "opacity": "1"
+      }
+    },
+    {
+      "label": "main today overdue-old",
+      "theme": "light",
+      "before": {
+        "color": "rgb(37, 43, 55)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "none",
+        "decorationColor": "rgb(37, 43, 55)",
+        "thickness": "auto",
+        "opacity": "1"
+      },
+      "after": {
+        "color": "rgb(37, 43, 55)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "line-through",
+        "decorationColor": "rgb(229, 183, 61)",
+        "thickness": "3px",
+        "opacity": "1"
+      }
+    },
+    {
+      "label": "sticky today due-today",
+      "theme": "light",
+      "before": {
+        "color": "rgb(37, 43, 55)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "none",
+        "decorationColor": "rgb(37, 43, 55)",
+        "thickness": "auto",
+        "opacity": "1"
+      },
+      "after": {
+        "color": "rgb(37, 43, 55)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "line-through",
+        "decorationColor": "rgb(229, 183, 61)",
+        "thickness": "3px",
+        "opacity": "1"
+      }
+    },
+    {
+      "label": "main today due-today",
+      "theme": "light",
+      "before": {
+        "color": "rgb(37, 43, 55)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "none",
+        "decorationColor": "rgb(37, 43, 55)",
+        "thickness": "auto",
+        "opacity": "1"
+      },
+      "after": {
+        "color": "rgb(37, 43, 55)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "line-through",
+        "decorationColor": "rgb(229, 183, 61)",
+        "thickness": "3px",
+        "opacity": "1"
+      }
+    },
+    {
+      "today": "2026-11-17",
+      "monday": "2026-11-16",
+      "weekStarts": [
+        "2026-11-09",
+        "2026-11-16",
+        "2026-11-23"
+      ]
+    },
+    {
+      "label": "main today",
+      "theme": "light",
+      "before": {
+        "color": "rgb(37, 43, 55)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "none",
+        "decorationColor": "rgb(37, 43, 55)",
+        "thickness": "auto",
+        "opacity": "1"
+      },
+      "after": {
+        "color": "rgb(37, 43, 55)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "line-through",
+        "decorationColor": "rgb(229, 183, 61)",
+        "thickness": "3px",
+        "opacity": "1"
+      }
+    },
+    {
+      "label": "sticky today",
+      "theme": "light",
+      "before": {
+        "color": "rgb(37, 43, 55)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "none",
+        "decorationColor": "rgb(37, 43, 55)",
+        "thickness": "auto",
+        "opacity": "1"
+      },
+      "after": {
+        "color": "rgb(37, 43, 55)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "line-through",
+        "decorationColor": "rgb(229, 183, 61)",
+        "thickness": "3px",
+        "opacity": "1"
+      }
+    },
+    {
+      "label": "sticky week",
+      "theme": "light",
+      "before": {
+        "color": "rgb(37, 43, 55)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "none",
+        "decorationColor": "rgb(37, 43, 55)",
+        "thickness": "auto",
+        "opacity": "1"
+      },
+      "after": {
+        "color": "rgb(37, 43, 55)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "line-through",
+        "decorationColor": "rgb(229, 183, 61)",
+        "thickness": "3px",
+        "opacity": "1"
+      }
+    },
+    {
+      "label": "main current week",
+      "theme": "light",
+      "before": {
+        "color": "rgb(37, 43, 55)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "none",
+        "decorationColor": "rgb(37, 43, 55)",
+        "thickness": "auto",
+        "opacity": "1"
+      },
+      "after": {
+        "color": "rgb(37, 43, 55)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "line-through",
+        "decorationColor": "rgb(229, 183, 61)",
+        "thickness": "3px",
+        "opacity": "1"
+      }
+    },
+    {
+      "label": "mind map",
+      "theme": "light",
+      "before": {
+        "color": "rgb(39, 52, 72)",
+        "size": "14px",
+        "weight": "600",
+        "decoration": "none",
+        "decorationColor": "rgb(39, 52, 72)",
+        "thickness": "auto",
+        "opacity": "1"
+      },
+      "after": {
+        "color": "rgb(39, 52, 72)",
+        "size": "14px",
+        "weight": "600",
+        "decoration": "line-through",
+        "decorationColor": "rgb(229, 183, 61)",
+        "thickness": "3px",
+        "opacity": "1"
+      }
+    },
+    {
+      "label": "main today",
+      "theme": "dark",
+      "before": {
+        "color": "rgb(225, 230, 238)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "none",
+        "decorationColor": "rgb(225, 230, 238)",
+        "thickness": "auto",
+        "opacity": "1"
+      },
+      "after": {
+        "color": "rgb(225, 230, 238)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "line-through",
+        "decorationColor": "rgb(241, 199, 91)",
+        "thickness": "3px",
+        "opacity": "1"
+      }
+    },
+    {
+      "label": "sticky today",
+      "theme": "dark",
+      "before": {
+        "color": "rgb(225, 230, 238)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "none",
+        "decorationColor": "rgb(225, 230, 238)",
+        "thickness": "auto",
+        "opacity": "1"
+      },
+      "after": {
+        "color": "rgb(225, 230, 238)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "line-through",
+        "decorationColor": "rgb(241, 199, 91)",
+        "thickness": "3px",
+        "opacity": "1"
+      }
+    },
+    {
+      "label": "sticky week",
+      "theme": "dark",
+      "before": {
+        "color": "rgb(225, 230, 238)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "none",
+        "decorationColor": "rgb(225, 230, 238)",
+        "thickness": "auto",
+        "opacity": "1"
+      },
+      "after": {
+        "color": "rgb(225, 230, 238)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "line-through",
+        "decorationColor": "rgb(241, 199, 91)",
+        "thickness": "3px",
+        "opacity": "1"
+      }
+    },
+    {
+      "label": "main current week",
+      "theme": "dark",
+      "before": {
+        "color": "rgb(225, 230, 238)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "none",
+        "decorationColor": "rgb(225, 230, 238)",
+        "thickness": "auto",
+        "opacity": "1"
+      },
+      "after": {
+        "color": "rgb(225, 230, 238)",
+        "size": "12.32px",
+        "weight": "600",
+        "decoration": "line-through",
+        "decorationColor": "rgb(241, 199, 91)",
+        "thickness": "3px",
+        "opacity": "1"
+      }
+    },
+    {
+      "label": "mind map",
+      "theme": "dark",
+      "before": {
+        "color": "rgb(242, 244, 248)",
+        "size": "14px",
+        "weight": "600",
+        "decoration": "none",
+        "decorationColor": "rgb(242, 244, 248)",
+        "thickness": "auto",
+        "opacity": "1"
+      },
+      "after": {
+        "color": "rgb(242, 244, 248)",
+        "size": "14px",
+        "weight": "600",
+        "decoration": "line-through",
+        "decorationColor": "rgb(241, 199, 91)",
+        "thickness": "3px",
+        "opacity": "1"
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "name": "MindNote-Setup.exe",
+    "path": "<workspace>\\out\\make\\squirrel.windows\\x64\\MindNote-Setup.exe",
+    "bytes": 164354560,
+    "MiB": 156.74,
+    "sha256": "03e3c02862d16be57f2f3c804c2c64f21a030a0f15819a1519be18b6d03303c5"
+  },
+  {
+    "name": "mindnote-1.1.0-full.nupkg",
+    "path": "<workspace>\\out\\make\\squirrel.windows\\x64\\mindnote-1.1.0-full.nupkg",
+    "bytes": 163339496,
+    "MiB": 155.77,
+    "sha256": "e36e1e86b0f11584c42a44eb1d6d753dd7517b83caeba2be5abc39dfffebce56"
+  }
+]

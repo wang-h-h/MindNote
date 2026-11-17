@@ -1,0 +1,10 @@
+allowBuilds:
+  electron: true
+  better-sqlite3: true
+  esbuild: true
+  electron-winstaller: true
+hoistPattern:
+  - '*'
+minimumReleaseAgeExclude:
+  - mind-elixir@6.0.1
+  - electron@45.3.2

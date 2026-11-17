@@ -1,0 +1,22 @@
+{
+  "checks": [
+    "Startup: only sticky, Today default, four tabs",
+    "Default creation uses local calendar date",
+    "Unscheduled compound option places task in inbox",
+    "Flat single-node project plan and unfinished-first card order",
+    "Two-line cards, project folding, due-date color and persistent grid columns",
+    "Schedule modes keep both fields visible and display parent dates",
+    "Independent progress snaps by ten; keyboard+blur sends one update",
+    "Untouched legacy progress is preserved; mouse dragging snaps correctly",
+    "Strike-through and notes editable after completion",
+    "Two-window sync, compact groups and fixed sticky settings close button",
+    "Week and month use calendar dates only",
+    "Global search opens matching task",
+    "Balanced preview, visible workspace footer, single round frame and maximized fill",
+    "Theme, font size and reduced motion sync",
+    "Aligned map inspector and automatically expanding two-line notes",
+    "Integrated right-click creation and approved depth expansion",
+    "No renderer exceptions"
+  ],
+  "errors": []
+}

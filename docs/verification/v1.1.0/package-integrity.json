@@ -1,0 +1,91 @@
+{
+  "version": "1.1.0",
+  "files": [
+    {
+      "file": "dist\\main\\main.js",
+      "sha256": "9848e245c1a0267bf147b7a0eb3665df1bc1f8f306f5fd3c402603c9930e9fbc"
+    },
+    {
+      "file": "dist\\main\\main.js.map",
+      "sha256": "a19736c432c37df91cb1d90069ddc2adab42553e4be1fa27d047a60091caf629"
+    },
+    {
+      "file": "dist\\main\\preload.js",
+      "sha256": "b3e0af9e8f3b380981b2af7c5f842cca6928ad2ac4aaa2d94ea04778d87c272c"
+    },
+    {
+      "file": "dist\\main\\preload.js.map",
+      "sha256": "ae1d045168ece734c8e0c545c7be4fa0b047e01bdb0c75fed9aff4043d194165"
+    },
+    {
+      "file": "dist\\renderer\\assets\\icon-ZHzAGlwJ.png",
+      "sha256": "26a5253e6ca82b2315ffc27f2e7a810bca806b8258a046765c8df056f99cb853"
+    },
+    {
+      "file": "dist\\renderer\\assets\\index-BnD0r5C0.js",
+      "sha256": "23e80007c29b2e667fce98a2b686dbea02a701bb0b0fd932dbc1c694813d61c2"
+    },
+    {
+      "file": "dist\\renderer\\assets\\index-Dis1tZR3.css",
+      "sha256": "8a40841fc30e933e9f42d357f2217b09fb56d8d4b324c28a55402f00df2c89df"
+    },
+    {
+      "file": "dist\\renderer\\index.html",
+      "sha256": "18d828c1482ed1f005c2ace9cb8b8286a6bcd259f963c78d50c2f8d9a372fd3d"
+    },
+    {
+      "file": "docs\\RELEASE_NOTES.zh-CN.md",
+      "sha256": "458e12419906696d41115faeeede469bb3c80a2c2c44422b89fe27f6c9b8d823"
+    },
+    {
+      "file": "docs\\USER_GUIDE.zh-CN.md",
+      "sha256": "2663a518e4c16b04e1e41de760cd4cf6c96620a3b4f4fbfcf1a57afd6739f49a"
+    },
+    {
+      "file": "docs\\VALIDATION-1.0.md",
+      "sha256": "90093c4d91514c48032a5293e56219aab2541aa9003209f1f3343e5b57a96073"
+    },
+    {
+      "file": "docs\\VALIDATION.md",
+      "sha256": "d725e33283ad41b482910a9cca7ef170ae916c0f6b33667abc488e3f9fb82304"
+    },
+    {
+      "file": "README.md",
+      "sha256": "9444f521fa8d78e89546a1750e07a5811dfc1e3a0700f963d7519ee3720a5dc5"
+    },
+    {
+      "file": "THIRD_PARTY_NOTICES.md",
+      "sha256": "bd8279d24fe735a3ba3fa8f41f8d96eb727774b192d5a3b75fb05b0630037417"
+    }
+  ],
+  "assets": [
+    {
+      "file": "assets\\icon.ico",
+      "sha256": "e59eecd0eccb6bbce5d60e87f98fffb56757aa9b625529ee8c79266bb6a80ca8"
+    },
+    {
+      "file": "assets\\icon.png",
+      "sha256": "26a5253e6ca82b2315ffc27f2e7a810bca806b8258a046765c8df056f99cb853"
+    },
+    {
+      "file": "assets\\icon.svg",
+      "sha256": "3d3d43f2f9540029e8efb1e4daf1acfd5f1dba4c2bdcc50a2f389e55757ac5fe"
+    },
+    {
+      "file": "assets\\tray.png",
+      "sha256": "44cee433207e8d27ccc0e45dfcd13be108cedf3a09f8647c52aa49239e02ad42"
+    },
+    {
+      "file": "assets\\tray.svg",
+      "sha256": "e72f82cd44b30a8dddcc10e9336c854b2a2cb44f8b2c49a5b10cbff23f5e7519"
+    }
+  ],
+  "native": [
+    {
+      "file": "node_modules/better-sqlite3/prebuilds/win32-x64.node",
+      "sha256": "d527af8fe1706a91696f42979319fe715444dc7f02c94d8c22e126201faec169",
+      "bytes": 2021888
+    }
+  ],
+  "ok": true
+}

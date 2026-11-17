@@ -1,0 +1,52 @@
+{
+  "version": "2.0.0",
+  "packaged": true,
+  "checks": [
+    "database, Chromium session, logs and crash dumps use the isolated data directory",
+    "all four display edges snap within the 16-DIP threshold",
+    "GIF and animated WebP remain byte-identical; reduce-motion returns the actual first PNG frame across windows",
+    "invalid paths and spoofed image extensions are rejected",
+    "both Chromium-rendered corners contain antialiased alpha coverage, without a binary native region"
+  ],
+  "animations": [
+    {
+      "format": "gif",
+      "sha256": "7fa4da3ed143b271b6227c99e8852d0d2c2ebe20eb66d3034836d2ff9ff8e05e",
+      "firstFrame": [
+        255,
+        0,
+        0,
+        255
+      ]
+    },
+    {
+      "format": "webp",
+      "sha256": "46a3f3c2801a2bd92142761cc5102e6148479a2cf4106b14674ae6db1ab74649",
+      "firstFrame": [
+        255,
+        0,
+        0,
+        255
+      ]
+    }
+  ],
+  "corners": [
+    {
+      "name": "sticky",
+      "distinctPartialAlpha": 65,
+      "file": "<workspace>\\test-results\\v12-aa-sticky-packaged.png"
+    },
+    {
+      "name": "main",
+      "distinctPartialAlpha": 35,
+      "file": "<workspace>\\test-results\\v12-aa-main-packaged.png"
+    }
+  ],
+  "paths": {
+    "userData": "<workspace>\\.local-data\\native-v12-packaged-1794924800365",
+    "sessionData": "<workspace>\\.local-data\\native-v12-packaged-1794924800365\\session",
+    "logs": "<workspace>\\.local-data\\native-v12-packaged-1794924800365\\logs",
+    "crashDumps": "<workspace>\\.local-data\\native-v12-packaged-1794924800365\\crashes"
+  },
+  "ok": true
+}

@@ -1,0 +1,50 @@
+{
+  "name": "mindnote",
+  "productName": "MindNote",
+  "version": "2.0.0",
+  "description": "思维便签 — 让想法有脉络，让计划有着落",
+  "author": "whh",
+  "private": true,
+  "main": "dist/main/main.js",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "tsc --noEmit && vite build && node scripts/build-main.mjs",
+    "start": "electron .",
+    "test": "node scripts/test.mjs",
+    "test:watch": "node scripts/test.mjs --watch",
+    "package": "pnpm build && electron-forge package",
+    "make": "pnpm build && electron-forge package && node scripts/build-installer.mjs",
+    "icons": "node scripts/icons.mjs",
+    "native:rebuild": "electron-rebuild -f -w better-sqlite3",
+    "test:desktop": "pnpm build && node scripts/verify-v20-ui.mjs && node scripts/verify-v20-behavior.mjs && node scripts/verify-desktop.mjs && node scripts/verify-window-shape.mjs && node scripts/verify-native-v12.mjs && node scripts/verify-pinning-v2.mjs",
+    "test:packaged": "node scripts/verify-v20-ui.mjs --packaged && node scripts/verify-v20-behavior.mjs --packaged && node scripts/verify-desktop.mjs --packaged && node scripts/verify-window-shape.mjs --packaged && node scripts/verify-native-v12.mjs --packaged && node scripts/verify-pinning-v2.mjs --packaged",
+    "format": "prettier --write src tests scripts *.config.* tsconfig.json package.json docs README.md"
+  },
+  "dependencies": {
+    "better-sqlite3": "13.1.1",
+    "electron-squirrel-startup": "^1.0.1",
+    "lucide-react": "^1.72.0",
+    "mind-elixir": "6.0.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "8.0.1",
+    "@electron-forge/maker-squirrel": "8.0.1",
+    "@electron/rebuild": "^4.2.1",
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/electron-squirrel-startup": "^1.0.2",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "electron": "45.3.2",
+    "esbuild": "^0.28.2",
+    "playwright": "^1.65.0",
+    "prettier": "^3.10.1",
+    "sharp": "^0.35.5",
+    "typescript": "^7.0.2",
+    "vite": "8.3.8",
+    "vitest": "^5.1.0"
+  }
+}

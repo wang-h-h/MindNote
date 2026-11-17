@@ -1,0 +1,44 @@
+{
+  "ok": true,
+  "checks": [
+    "Home→End keeps 36 with delayed broadcast/ack; focus/blur adds no writes",
+    "Old broadcast preserves the active keyboard draft and its live preview",
+    "A new pointer drag survives an in-flight save and commits once at release",
+    "A newer external revision wins over an older acknowledgement without dirty local input",
+    "Finishing a newer local draft after an external revision preserves the user’s final value",
+    "A failed save restores the latest authoritative value and can be retried",
+    "Failure of an older save does not erase a newer queued draft",
+    "Cancel without a changed value reconciles external state without writing",
+    "Closing settings preserves the last explicitly committed choice",
+    "A newer settings session supersedes an old unsent draft",
+    "Opacity percent conversion and live preview follow the same final-intent rule"
+  ],
+  "metrics": [
+    {
+      "case": "Home-End",
+      "calls": [
+        {
+          "patch": {
+            "blur": 0
+          },
+          "started": 135.69999999925494,
+          "rejected": false,
+          "revision": 2,
+          "broadcast": 250.90000000037253,
+          "ack": 390.09999999962747
+        },
+        {
+          "patch": {
+            "blur": 36
+          },
+          "started": 390.30000000074506,
+          "rejected": false,
+          "revision": 3,
+          "broadcast": 498.5,
+          "ack": 639.3000000007451
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

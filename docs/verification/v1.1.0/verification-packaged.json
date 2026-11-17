@@ -1,0 +1,70 @@
+{
+  "version": "1.1.0",
+  "packaged": true,
+  "dataDir": "<workspace>\\.local-data\\native-packaged-1794709479815",
+  "checks": [
+    "startup creates only the sticky window",
+    "main window is created only on request",
+    "main maximize/restore and sticky maximize rejection",
+    "real second process exits and restores only the sticky window",
+    "sticky resize, pinning, collapse and expanded-height recovery",
+    "backup/restore over IPC and automatic pre-restore backup",
+    "restart retains data, appearance and sticky dimensions without opening main",
+    "display-change recovery brings an off-screen note back into the work area",
+    "rounded transparent renderer surface; native acrylic remains disabled",
+    "100%, 150% and 200% DPI keep the note usable and on-screen"
+  ],
+  "dpi": [
+    {
+      "scale": 1,
+      "metrics": {
+        "dpr": 1,
+        "overflow": false
+      },
+      "bounds": {
+        "x": -1706,
+        "y": 0,
+        "width": 360,
+        "height": 560
+      }
+    },
+    {
+      "scale": 1.5,
+      "metrics": {
+        "dpr": 1.5,
+        "overflow": false
+      },
+      "bounds": {
+        "x": -1706,
+        "y": 0,
+        "width": 361,
+        "height": 560
+      }
+    },
+    {
+      "scale": 2,
+      "metrics": {
+        "dpr": 2,
+        "overflow": false
+      },
+      "bounds": {
+        "x": -1280,
+        "y": 0,
+        "width": 360,
+        "height": 560
+      }
+    }
+  ],
+  "screenshots": [
+    "<workspace>\\test-results\\native-alpha-packaged.png",
+    "<workspace>\\test-results\\native-sticky-1-packaged.png",
+    "<workspace>\\test-results\\native-sticky-1.5-packaged.png",
+    "<workspace>\\test-results\\native-main-packaged.png",
+    "<workspace>\\test-results\\native-sticky-2-packaged.png"
+  ],
+  "alpha": {
+    "corner": 0,
+    "panel": 184
+  },
+  "ok": true
+}

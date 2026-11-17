@@ -1,0 +1,40 @@
+{
+  "ok": true,
+  "alignment": {
+    "x": 0.177520751953125,
+    "y": 0
+  },
+  "fitGeometry": {
+    "left": 171.99998474121094,
+    "right": 934.0000305175781,
+    "hostLeft": 0,
+    "hostRight": 1106,
+    "centerDifference": 7.62939453125e-06
+  },
+  "screenshotCaptured": true,
+  "performance": {
+    "createAndRender1000Ms": 128,
+    "foldMs": 21,
+    "locateAndExpandMs": 87,
+    "externalEditMs": 98,
+    "canvasEditMs": 1836
+  },
+  "checks": [
+    "hidden draft root and its connectors",
+    "context add callbacks",
+    "no implicit creation",
+    "blank left drag",
+    "wheel zoom",
+    "font-size setting at 18px",
+    "scaled double-click alignment",
+    "commit on map switch",
+    "delete and stale selection",
+    "map-switch descendant retention",
+    "one-batch depth expansion with stable viewport",
+    "ordinary and structural edits with stable viewport",
+    "project root folding",
+    "progress without numeric text",
+    "dark theme",
+    "1000-node folding, locating and bidirectional editing"
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "baseline": false,
+  "packaged": true,
+  "dataDir": "<workspace>\\.local-data\\pinning-packaged-1794924740603",
+  "checks": [
+    "settings enable and disable a real topmost window",
+    "desktop compositor: pinned note stays over a focused ordinary window; unpinned note yields",
+    "fault injection covers show, close-to-tray, minimize, native restore, resume, unlock and display events",
+    "unpin remains off and hidden notes stay hidden across system lifecycle events",
+    "recreated sticky reads the persisted pin setting",
+    "restart retains pin state"
+  ],
+  "recoveries": [
+    {
+      "name": "hidden note recovers pin when the shared tray/showSticky route reopens it",
+      "id": 1,
+      "pinned": true,
+      "visible": true,
+      "minimized": false,
+      "focused": true
+    },
+    {
+      "name": "native close hides without destroying; tray route restores the saved pin",
+      "id": 1,
+      "pinned": true,
+      "visible": true,
+      "minimized": false,
+      "focused": true
+    },
+    {
+      "name": "showSticky restores a minimized note and its pin",
+      "id": 1,
+      "pinned": true,
+      "visible": true,
+      "minimized": false,
+      "focused": true
+    },
+    {
+      "name": "native restore event reasserts the saved pin",
+      "id": 1,
+      "pinned": true,
+      "visible": true,
+      "minimized": false,
+      "focused": true
+    },
+    {
+      "name": "resume lifecycle event repairs native flag drift",
+      "id": 1,
+      "pinned": true,
+      "visible": true,
+      "minimized": false,
+      "focused": false
+    },
+    {
+      "name": "unlock-screen lifecycle event repairs native flag drift",
+      "id": 1,
+      "pinned": true,
+      "visible": true,
+      "minimized": false,
+      "focused": false
+    },
+    {
+      "name": "display reconfiguration repairs visible native pin",
+      "id": 1,
+      "pinned": true,
+      "visible": true,
+      "minimized": false,
+      "focused": false
+    }
+  ],
+  "compositor": [
+    {
+      "pinned": true,
+      "sample": [
+        231,
+        208,
+        225
+      ],
+      "file": "<workspace>\\test-results\\pinning-on-packaged.png"
+    },
+    {
+      "pinned": false,
+      "sample": [
+        202,
+        60,
+        144
+      ],
+      "file": "<workspace>\\test-results\\pinning-off-packaged.png"
+    }
+  ],
+  "version": "2.0.0",
+  "ok": true
+}
