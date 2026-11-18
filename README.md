@@ -1,6 +1,4 @@
-<p align="center"><img src="assets/icon.png" width="72" alt="MindNote" /></p>
-
-<h1 align="center">MindNote · 思维便签</h1>
+# MindNote · 思维便签
 
 在桌面便签记下一件事，把它排进本周，也能点回思维导图查看它属于哪个项目。便签、计划和导图共用同一份进度与备注，离线也会自动保存。
 
@@ -8,25 +6,25 @@ Capture a task on your desktop, schedule it for the week, and jump back to its o
 
 **下载 V2.0 / Download**　[Mac · Apple Silicon](https://github.com/wang-h-h/MindNote/releases/download/v2.0.0/MindNote-2.0.0-macOS-arm64.dmg)　·　[Mac · Intel](https://github.com/wang-h-h/MindNote/releases/download/v2.0.0/MindNote-2.0.0-macOS-x64.dmg)　·　[Windows x64](https://github.com/wang-h-h/MindNote/releases/download/v2.0.0/MindNote-2.0.0-Setup.exe)
 
+## 完整界面 / Main workspace
+
+[![MindNote 完整窗口，左侧为导航栏，右侧为今日概览、日历和待办进度 / Full MindNote window with navigation, calendar and task progress](https://cdn.jsdelivr.net/gh/wang-h-h/MindNote@70184379211dea8e9e899e9b853a1e0acfd56ded/docs/screenshots/today.png)](docs/screenshots/today.png)
+
+在「今日概览」里切换日期、查看任务进度，或从左侧打开三周计划和项目导图。
+
+In Today, pick a date to see your tasks and their progress. The sidebar opens the three-week planner and project mind maps.
+
 ## 桌面便签 / Desktop sticky note
 
-![桌面布局示意，右侧为实际便签小窗口 / Desktop layout illustration showing the sticky note on the right](docs/screenshots/sticky-desktop.png)
+| 动态便签 · 流云与湖面波纹 / Animated landscape | 静态便签 · 山湖 / Still landscape |
+| :---: | :---: |
+| [![使用动态山湖背景的桌面便签，云与水纹循环移动 / Desktop sticky note with moving clouds and ripples](https://cdn.jsdelivr.net/gh/wang-h-h/MindNote@70184379211dea8e9e899e9b853a1e0acfd56ded/docs/screenshots/sticky-landscape-animated.gif)](docs/screenshots/sticky-landscape-animated.gif) | [![使用静态山湖背景的桌面便签 / Desktop sticky note with a still mountain lake](https://cdn.jsdelivr.net/gh/wang-h-h/MindNote@70184379211dea8e9e899e9b853a1e0acfd56ded/docs/screenshots/sticky-landscape.png)](docs/screenshots/sticky-landscape.png) |
 
-首图由原创壁纸与真实便签截图合成，用于展示桌面布局。The first image combines original wallpaper with a real note capture to illustrate the desktop layout.
+把便签置顶，拖动进度条即可更新任务。要换风景，打开 **外观设置 → 背景图片**，选择不超过 20 MB 的 PNG、JPEG、GIF 或 WebP。两个窗口会同步换背景，开启「减少动效」后会显示静态首帧。
 
-启动后先看到这张小便签。它可以置顶、贴边，拖动进度条就能更新事项。点右上角箭头进入完整窗口，查看上周、本周、下周的安排，或回到项目导图。
+Pin the note and drag a slider to update a task. In Appearance, choose a background for both windows. GIFs and animated WebP play in place. Reduce Motion shows the first frame.
 
-Pin the note beside your work, drag a slider to update progress, or open the workspace to see three weeks of plans and the project map.
-
-## 给便签换个风景 / Change the scenery
-
-打开 **外观设置 → 背景图片 → 添加背景（或更换背景）**，选择不超过 20 MB 的 PNG、JPEG、GIF 或 WebP。主窗口和便签会一起换背景。开启「减少动效」时，动态风景停在首帧。
-
-In Appearance, choose a background image for both windows. GIFs and animated WebP play in place. Reduce Motion shows the first frame.
-
-|                                 静态山湖 / Still landscape                                  |                                   流云与湖面波纹 / Animated landscape                                    |
-| :-----------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------: |
-| ![静态风景便签 / Sticky note with a still landscape](docs/screenshots/sticky-landscape.png) | ![动态风景便签 / Sticky note with an animated landscape](docs/screenshots/sticky-landscape-animated.gif) |
+查看原图 / Open screenshots　[完整界面 / Workspace](docs/screenshots/today.png) · [动态便签 / Animated](docs/screenshots/sticky-landscape-animated.gif) · [静态便签 / Still](docs/screenshots/sticky-landscape.png)
 
 试用图中的山湖背景 / Try these backgrounds　[静态 PNG](docs/examples/backgrounds/mist-lake.png) · [动态 GIF](docs/examples/backgrounds/mist-lake-animated.gif)
 
