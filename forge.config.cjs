@@ -70,7 +70,12 @@ module.exports = {
           },
         }
       : {}),
-    asar: { unpack: '**/*.{node,dll}' },
+    // asar matches file globs against the absolute staging path. A hidden
+    // component (our .local-data folder) prevents a globstar from matching.
+    // A directory rule is relative to the app and independent of the host path.
+    asar: onMac
+      ? { unpackDir: 'node_modules/better-sqlite3/prebuilds' }
+      : { unpack: '**/*.{node,dll}' },
     extraResource: ['./assets'],
     prune: false,
     ignore: (file) => {
