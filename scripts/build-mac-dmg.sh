@@ -15,7 +15,15 @@ codesign --verify --deep --strict "$app"
 ditto "$app" "$scratch/volume/MindNote.app"
 ln -s /Applications "$scratch/volume/Applications"
 image="MindNote-$version-macOS-$arch.dmg"
-hdiutil create -volname MindNote -srcfolder "$scratch/volume" -format UDZO -fs HFS+ "$scratch/$image"
-hdiutil verify "$scratch/$image"
-mv -f "$scratch/$image" "$output/$image"
+# The disk image service can report EBUSY on hosted Macs immediately after copying a bundle.
+for attempt in 1 2 3; do
+  candidate="$scratch/image-$attempt.dmg"
+  if hdiutil create -volname MindNote -srcfolder "$scratch/volume" -format UDZO -fs HFS+ "$candidate"; then
+    break
+  fi
+  [[ "$attempt" != 3 ]] || exit 1
+  sleep 5
+done
+hdiutil verify "$candidate"
+mv -f "$candidate" "$output/$image"
 printf '%s\n' "$output/$image"

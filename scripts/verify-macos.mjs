@@ -4,6 +4,7 @@ import { existsSync } from 'node:fs';
 import { mkdtemp, writeFile } from 'node:fs/promises';
 import { homedir, tmpdir } from 'node:os';
 import path from 'node:path';
+import { setTimeout as delay } from 'node:timers/promises';
 import { _electron as electron } from 'playwright';
 import Database from 'better-sqlite3';
 
@@ -43,22 +44,25 @@ try {
   const sticky = await session.firstWindow();
   sticky.on('pageerror', (error) => errors.push(error.message));
   await sticky.locator('.sticky-tabs').waitFor();
-  const native = await session.evaluate(({ app, BrowserWindow }) => ({
+  const native = await session.evaluate(({ app }) => ({
     packaged: app.isPackaged,
     version: app.getVersion(),
     platform: process.platform,
     arch: process.arch,
     dataDir: app.getPath('userData'),
-    visible: BrowserWindow.getAllWindows().some(
-      (w) => w.isVisible() && w.webContents.getURL().includes('view=sticky'),
-    ),
   }));
   assert.equal(native.packaged, true);
   assert.equal(native.version, '2.0.0');
   assert.equal(native.platform, 'darwin');
   assert.equal(native.arch, process.arch);
   assert.equal(native.dataDir, dataDir);
-  assert.ok(native.visible, 'The native sticky window is visible');
+  // The renderer DOM can be ready before the first composited frame on a busy runner.
+  const isStickyVisible = () => session.evaluate(({ BrowserWindow }) =>
+    BrowserWindow.getAllWindows().some(w => w.isVisible() && w.webContents.getURL().includes('view=sticky')),
+  );
+  const deadline = Date.now() + 30000;
+  while (!(await isStickyVisible()) && Date.now() < deadline) await delay(150);
+  assert.ok(await isStickyVisible(), 'The native sticky window became visible');
   await sticky.evaluate(async (title) => {
     const { maps } = await window.mindnote.getSnapshot();
     const inbox = maps.find((map) => map.system);
