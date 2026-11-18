@@ -103,6 +103,9 @@ export interface WindowPresentation {
   fullscreen: boolean;
 }
 export interface MindNoteAPI {
+  /** Provided by the sandboxed preload, never inferred from the user agent. */
+  readonly platform?: string;
+  onHistoryAction?(listener: (action: 'undo' | 'redo') => void): () => void;
   getSnapshot(): Promise<Snapshot>;
   dispatch(command: Command): Promise<Snapshot>;
   onChange(listener: (snapshot: Snapshot) => void): () => void;

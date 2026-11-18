@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import {
   Plus,
   Sun,
@@ -24,6 +24,7 @@ import {
 } from 'lucide-react';
 import type { Snapshot, Command, Filter } from '../shared/types';
 import { localDate, effectiveSchedule, selectPlanNodes } from '../shared/domain';
+import { appShortcut } from '../shared/shortcuts';
 import { Logo, IconButton, Modal } from './components';
 import PlanViews from './PlanViews';
 import MindMapCanvas from './MindMapCanvas';
@@ -54,6 +55,9 @@ type Dialog =
   | { type: 'settings' }
   | null;
 export default function App() {
+  const platform = window.mindnote.platform ?? 'win32';
+  const shortcutLabel = platform === 'darwin' ? '⌘' : 'Ctrl';
+  const composing = useRef(false);
   const sticky = new URLSearchParams(location.search).get('view') === 'sticky';
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null),
     [filter, setFilter] = useState<Filter>('today'),
@@ -160,31 +164,52 @@ export default function App() {
     }
   }, [snapshot, selected, mapId, dialog]);
   useEffect(() => {
+    const startComposition = () => {
+      composing.current = true;
+    };
+    const endComposition = () => {
+      composing.current = false;
+    };
+    window.addEventListener('compositionstart', startComposition, true);
+    window.addEventListener('compositionend', endComposition, true);
+    return () => {
+      window.removeEventListener('compositionstart', startComposition, true);
+      window.removeEventListener('compositionend', endComposition, true);
+    };
+  }, []);
+  useEffect(() => {
     const key = (e: KeyboardEvent) => {
-      if (e.isComposing || e.defaultPrevented) return;
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault();
-        // Search must not replace an unfinished or currently saving form.
-        if (dialog && dialog.type !== 'search') return;
+      const target = e.target instanceof HTMLElement ? e.target : null;
+      const action = appShortcut(e, platform, {
+        editing: !!target?.closest('input,textarea,select,[contenteditable]'),
+        dialogOpen: !!dialog,
+        inMindMap: !!target?.closest('.mindmap-shell'),
+      });
+      if (!action) return;
+      e.preventDefault();
+      if (action === 'search') {
         setDialog({ type: 'search' });
-        return;
-      }
-      if (dialog || (e.target as HTMLElement).closest('input,textarea,[contenteditable],.mindmap-shell'))
-        return;
-      if (e.ctrlKey && e.key.toLowerCase() === 'n') {
-        e.preventDefault();
+      } else if (action === 'new-task') {
         setDialog({ type: 'add', date: localDate() });
-      }
-      if (e.ctrlKey && ['z', 'y'].includes(e.key.toLowerCase())) {
-        e.preventDefault();
-        void dispatch({
-          type: e.shiftKey || e.key.toLowerCase() === 'y' ? 'history.redo' : 'history.undo',
-        }).catch(() => {});
+      } else {
+        void dispatch({ type: action === 'redo' ? 'history.redo' : 'history.undo' }).catch(() => {});
       }
     };
     window.addEventListener('keydown', key);
-    return () => window.removeEventListener('keydown', key);
-  }, [dialog, dispatch]);
+    // macOS menu accelerators run before DOM keydown. Route menu history to
+    // the focused editor's native undo stack or the shared application history.
+    const unsubscribe = window.mindnote.onHistoryAction?.((action) => {
+      if (composing.current) return;
+      const editing = document.activeElement?.closest('input,textarea,[contenteditable]');
+      if (editing) document.execCommand(action);
+      else if (!dialog)
+        void dispatch({ type: action === 'redo' ? 'history.redo' : 'history.undo' }).catch(() => {});
+    });
+    return () => {
+      window.removeEventListener('keydown', key);
+      unsubscribe?.();
+    };
+  }, [dialog, dispatch, platform]);
   useEffect(() => {
     if (!notice) return;
     const timer = setTimeout(() => setNotice(''), 4000);
@@ -353,7 +378,7 @@ export default function App() {
               <footer className="sticky-footer">
                 <button className="quick-add" onClick={() => add()}>
                   <Plus size={16} />
-                  新增待办<kbd>Ctrl N</kbd>
+                  新增待办<kbd>{shortcutLabel} N</kbd>
                 </button>
               </footer>
               <ResizeHandle />
@@ -439,7 +464,7 @@ export default function App() {
               <div className="topbar-actions no-drag">
                 <button className="search-trigger" onClick={() => setDialog({ type: 'search' })}>
                   <Search size={15} />
-                  搜索你的想法<kbd>Ctrl K</kbd>
+                  搜索你的想法<kbd>{shortcutLabel} K</kbd>
                 </button>
                 <IconButton
                   title={snapshot.settings.theme === 'light' ? '切换到深色' : '切换到浅色'}

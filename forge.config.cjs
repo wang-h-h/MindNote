@@ -5,6 +5,7 @@ const { createHash } = require('node:crypto');
 const { createRequire } = require('node:module');
 
 const RUNTIME_MODULES = ['better-sqlite3', 'electron-squirrel-startup'];
+const onMac = process.platform === 'darwin';
 // Keep Electron packaging isolated in a stable staging folder. NSIS creates
 // the configurable-path installer separately via scripts/build-installer.mjs.
 const STAGING_OUT = path.join(
@@ -51,7 +52,24 @@ module.exports = {
       : {}),
     name: 'MindNote',
     executableName: 'MindNote',
-    icon: './assets/icon.ico',
+    icon: onMac ? './.local-data/mac-icon/icon.icns' : './assets/icon.ico',
+    ...(onMac
+      ? {
+          appBundleId: 'com.whh.MindNote',
+          appCategoryType: 'public.app-category.productivity',
+          osxSign: {
+            identity: '-',
+            identityValidation: false,
+            preAutoEntitlements: false,
+            continueOnError: false,
+            optionsForFile: () => ({
+              timestamp: 'none',
+              hardenedRuntime: false,
+              entitlements: ['com.apple.security.cs.allow-jit'],
+            }),
+          },
+        }
+      : {}),
     asar: { unpack: '**/*.{node,dll}' },
     extraResource: ['./assets'],
     prune: false,
@@ -72,24 +90,34 @@ module.exports = {
   // forcing a node-gyp rebuild would add an unnecessary compiler requirement.
   rebuildConfig: { ignoreModules: ['better-sqlite3'] },
   hooks: {
+    prePackage: async () => {
+      if (onMac) await import('./scripts/build-mac-icon.mjs');
+    },
     packageAfterCopy: async (_config, buildPath, _electronVersion, platform, arch) => {
-      if (platform !== 'win32' || arch !== 'x64') throw new Error('MindNote 首版仅打包 Windows x64。');
+      const supported =
+        (platform === 'win32' && arch === 'x64') ||
+        (platform === 'darwin' && onMac && ['arm64', 'x64'].includes(arch));
+      if (!supported) throw new Error(`Unsupported packaging target: ${platform}-${arch}`);
       const root = __dirname;
-      for (const dependency of RUNTIME_MODULES)
-        await stagePackage(dependency, root, buildPath, platform, arch);
+      const modules = platform === 'darwin' ? ['better-sqlite3'] : RUNTIME_MODULES;
+      for (const dependency of modules) await stagePackage(dependency, root, buildPath, platform, arch);
       const stagedPath = path.join(buildPath, 'package.json');
       const manifest = JSON.parse(await fs.readFile(stagedPath, 'utf8'));
-      manifest.dependencies = Object.fromEntries(
-        RUNTIME_MODULES.map((name) => [name, manifest.dependencies[name]]),
-      );
+      manifest.dependencies = Object.fromEntries(modules.map((name) => [name, manifest.dependencies[name]]));
       delete manifest.devDependencies;
       delete manifest.scripts;
       await fs.writeFile(stagedPath, `${JSON.stringify(manifest, null, 2)}\n`);
-      await fs.access(path.join(buildPath, 'node_modules/better-sqlite3/prebuilds/win32-x64.node'));
+      await fs.access(
+        path.join(buildPath, 'node_modules/better-sqlite3/prebuilds', `${platform}-${arch}.node`),
+      );
     },
     postPackage: async (_config, { outputPaths }) => {
       for (const source of outputPaths) {
-        await fs.cp(source, path.join(FINAL_OUT, path.basename(source)), { recursive: true, force: true });
+        await fs.cp(source, path.join(FINAL_OUT, path.basename(source)), {
+          recursive: true,
+          force: true,
+          verbatimSymlinks: true,
+        });
       }
     },
     postMake: async (_config, results) => {

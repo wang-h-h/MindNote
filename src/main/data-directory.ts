@@ -4,7 +4,10 @@ import { constants, existsSync, mkdirSync, closeSync, openSync, unlinkSync } fro
 import { copyFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
-export function configureDataDirectory(app: App): { directory: string; legacy: string[] } {
+export function configureDataDirectory(
+  app: App,
+  platform: NodeJS.Platform = process.platform,
+): { directory: string; legacy: string[] } {
   const explicit =
     process.env.MINDNOTE_DATA_DIR && (!app.isPackaged || process.env.MINDNOTE_TEST_MODE === '1');
   const appData = app.getPath('appData');
@@ -21,7 +24,9 @@ export function configureDataDirectory(app: App): { directory: string; legacy: s
   const directory = explicit
     ? path.resolve(process.env.MINDNOTE_DATA_DIR!)
     : app.isPackaged
-      ? path.join(path.dirname(app.getPath('exe')), 'data')
+      ? platform === 'darwin'
+        ? path.join(appData, 'MindNote')
+        : path.join(path.dirname(app.getPath('exe')), 'data')
       : app.getPath('userData');
   mkdirSync(directory, { recursive: true });
   const probe = path.join(directory, `.mindnote-write-${process.pid}-${Date.now()}`);
@@ -29,7 +34,13 @@ export function configureDataDirectory(app: App): { directory: string; legacy: s
     closeSync(openSync(probe, 'wx'));
     unlinkSync(probe);
   } catch {
-    throw new Error(`数据目录不可写：${directory}\n请将 MindNote 安装到当前用户有写入权限的文件夹。`);
+    throw new Error(
+      `数据目录不可写：${directory}\n${
+        platform === 'darwin'
+          ? '请检查当前用户 Application Support 文件夹的写入权限。'
+          : '请将 MindNote 安装到当前用户有写入权限的文件夹。'
+      }`,
+    );
   }
   app.setPath('userData', directory);
   for (const [key, folder] of [
@@ -46,7 +57,12 @@ export function configureDataDirectory(app: App): { directory: string; legacy: s
   return {
     directory,
     legacy: app.isPackaged
-      ? legacy.filter((item) => path.resolve(item).toLowerCase() !== directory.toLowerCase())
+      ? legacy.filter((item) => {
+          const source = path.resolve(item);
+          return platform === 'win32'
+            ? source.toLowerCase() !== directory.toLowerCase()
+            : source !== directory;
+        })
       : [],
   };
 }

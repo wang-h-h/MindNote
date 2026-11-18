@@ -1024,10 +1024,13 @@ export function Appearance({
           onChange={(pinned) => toggle({ pinned })}
         />
         <SettingSwitch
-          label="开机启动"
+          label={window.mindnote.platform === 'darwin' ? '登录时启动' : '开机启动'}
           checked={settings.launchAtLogin}
           onChange={(launchAtLogin) => toggle({ launchAtLogin })}
         />
+        {window.mindnote.platform === 'darwin' && (
+          <p>登录项可能需要在 macOS「系统设置 → 通用 → 登录项」中允许。</p>
+        )}
       </section>
       <section className="setting-card settings-data">
         <h2>数据</h2>

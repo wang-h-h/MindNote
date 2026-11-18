@@ -10,6 +10,14 @@ ipcRenderer.on('mindnote:focus-node', (_event, id: string) => {
 
 /** Only this small, typed surface crosses the renderer/main trust boundary. */
 const api: MindNoteAPI = {
+  platform: process.platform,
+  onHistoryAction: (listener) => {
+    const handler = (_event: Electron.IpcRendererEvent, action: unknown) => {
+      if (action === 'undo' || action === 'redo') listener(action);
+    };
+    ipcRenderer.on('mindnote:history-action', handler);
+    return () => ipcRenderer.removeListener('mindnote:history-action', handler);
+  },
   getSnapshot: () => ipcRenderer.invoke('mindnote:snapshot'),
   dispatch: (command: Command) => ipcRenderer.invoke('mindnote:dispatch', command),
   onChange: (listener: (snapshot: Snapshot) => void) => {

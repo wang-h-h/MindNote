@@ -14,6 +14,7 @@
     "test:watch": "node scripts/test.mjs --watch",
     "package": "pnpm build && electron-forge package",
     "make": "pnpm build && electron-forge package && node scripts/build-installer.mjs",
+    "make:mac": "pnpm build && electron-forge package --platform=darwin && bash scripts/build-mac-dmg.sh",
     "icons": "node scripts/icons.mjs",
     "native:rebuild": "electron-rebuild -f -w better-sqlite3",
     "test:desktop": "pnpm build && node scripts/verify-v20-ui.mjs && node scripts/verify-v20-behavior.mjs && node scripts/verify-desktop.mjs && node scripts/verify-window-shape.mjs && node scripts/verify-native-v12.mjs && node scripts/verify-pinning-v2.mjs",

@@ -20,7 +20,8 @@ import { backgroundURL, readBackgroundImage, registerBackgroundProtocol } from '
 import { applyStickyPinning, observeStickyPinning } from './sticky-pinning';
 import type { Command, Snapshot, WindowPresentation, WindowState } from '../shared/types';
 
-const squirrelStartup: boolean = require('electron-squirrel-startup');
+const squirrelStartup: boolean = process.platform === 'win32' && require('electron-squirrel-startup');
+const isMac = process.platform === 'darwin';
 const PRODUCT_NAME = '思维便签 MindNote';
 const APP_ID = 'com.whh.MindNote';
 const MIN_STICKY_WIDTH = 300;
@@ -63,6 +64,45 @@ const readyWindows = new WeakSet<BrowserWindow>();
 
 function assetPath(filename: string): string {
   return path.join(app.isPackaged ? process.resourcesPath : app.getAppPath(), 'assets', filename);
+}
+
+function configureApplicationMenu(): void {
+  if (!isMac) {
+    Menu.setApplicationMenu(null);
+    return;
+  }
+  const history = (action: 'undo' | 'redo') => {
+    const focused = BrowserWindow.getFocusedWindow();
+    if (focused && (focused === mainWindow || focused === stickyWindow))
+      focused.webContents.send('mindnote:history-action', action);
+  };
+  Menu.setApplicationMenu(
+    Menu.buildFromTemplate([
+      { role: 'appMenu' },
+      {
+        label: '文件',
+        submenu: [
+          { label: '打开完整窗口', click: () => showMain() },
+          { label: '显示桌面便签', click: () => showSticky() },
+          { type: 'separator' },
+          { role: 'close', label: '关闭窗口' },
+        ],
+      },
+      {
+        label: '编辑',
+        submenu: [
+          { label: '撤销', accelerator: 'Command+Z', click: () => history('undo') },
+          { label: '重做', accelerator: 'Command+Shift+Z', click: () => history('redo') },
+          { type: 'separator' },
+          { role: 'cut', label: '剪切' },
+          { role: 'copy', label: '复制' },
+          { role: 'paste', label: '粘贴' },
+          { role: 'selectAll', label: '全选' },
+        ],
+      },
+      { role: 'windowMenu' },
+    ]),
+  );
 }
 
 function finiteRectangle(value: unknown): value is WindowState {
@@ -193,10 +233,11 @@ function observeBounds(key: string, window: BrowserWindow): void {
   window.on('resize', saveLater);
   if (key === 'sticky') {
     let userMoving = false;
+    let snapTimer: ReturnType<typeof setTimeout> | undefined;
     window.on('will-move', () => {
       userMoving = true;
     });
-    window.on('moved', () => {
+    const snap = () => {
       if (!userMoving || window.isDestroyed()) return;
       userMoving = false;
       const bounds = window.getBounds();
@@ -210,7 +251,16 @@ function observeBounds(key: string, window: BrowserWindow): void {
       else if (Math.abs(bounds.y + bounds.height - area.y - area.height) <= threshold)
         target.y = area.y + area.height - bounds.height;
       updateWindowBounds(window, target, true);
+    };
+    window.on('moved', () => {
+      // On macOS "moved" is an alias of "move" and fires during dragging.
+      // Wait for movement to settle instead of fighting the pointer each frame.
+      if (isMac) {
+        clearTimeout(snapTimer);
+        snapTimer = setTimeout(snap, 120);
+      } else snap();
     });
+    window.on('closed', () => clearTimeout(snapTimer));
   }
   window.on('close', (event) => {
     persistBounds(key, window);
@@ -272,14 +322,13 @@ function createMainWindow(): BrowserWindow {
     minWidth: Math.min(880, bounds.width),
     minHeight: Math.min(620, bounds.height),
     title: PRODUCT_NAME,
-    icon: assetPath('icon.ico'),
+    icon: assetPath(process.platform === 'win32' ? 'icon.ico' : 'icon.png'),
     frame: false,
     transparent: true,
     resizable: false,
-    thickFrame: false,
-    roundedCorners: false,
+    ...(process.platform === 'win32' ? { thickFrame: false, roundedCorners: false } : {}),
     hasShadow: false,
-    backgroundMaterial: 'none',
+    ...(process.platform === 'win32' ? { backgroundMaterial: 'none' as const } : {}),
     show: false,
     backgroundColor: '#00000000',
     autoHideMenuBar: true,
@@ -324,10 +373,9 @@ function createStickyWindow(): BrowserWindow {
     minWidth: MIN_STICKY_WIDTH,
     minHeight: COLLAPSED_HEIGHT,
     title: '思维便签',
-    icon: assetPath('icon.ico'),
+    icon: assetPath(process.platform === 'win32' ? 'icon.ico' : 'icon.png'),
     frame: false,
-    roundedCorners: false,
-    backgroundMaterial: 'none',
+    ...(process.platform === 'win32' ? { roundedCorners: false, backgroundMaterial: 'none' as const } : {}),
     transparent: true,
     backgroundColor: '#00000000',
     resizable: false,
@@ -422,7 +470,7 @@ function applySettings(snapshot: Snapshot): void {
   }
   if (appliedLogin !== settings.launchAtLogin) {
     // Register the installed executable, never the shared development Electron.
-    if (app.isPackaged && process.platform === 'win32')
+    if (app.isPackaged && process.env.MINDNOTE_TEST_MODE !== '1' && (process.platform === 'win32' || isMac))
       app.setLoginItemSettings({ openAtLogin: settings.launchAtLogin });
     appliedLogin = settings.launchAtLogin;
   }
@@ -464,11 +512,17 @@ function updateTray(): void {
 
 function createTray(): void {
   let icon = nativeImage.createFromPath(assetPath('tray.png'));
-  if (icon.isEmpty()) icon = nativeImage.createFromPath(assetPath('icon.ico'));
-  tray = new Tray(icon.resize({ width: 20, height: 20 }));
+  if (icon.isEmpty())
+    icon = nativeImage.createFromPath(assetPath(process.platform === 'win32' ? 'icon.ico' : 'icon.png'));
+  const size = isMac ? 18 : 20;
+  tray = new Tray(icon.resize({ width: size, height: size }));
   tray.setToolTip(PRODUCT_NAME);
-  tray.on('double-click', () => showMain());
-  tray.on('click', () => showSticky());
+  // macOS opens the attached status-item menu on click. Do not also pop a
+  // window underneath that menu; both windows are available from menu items.
+  if (!isMac) {
+    tray.on('double-click', () => showMain());
+    tray.on('click', () => showSticky());
+  }
   updateTray();
 }
 
@@ -485,7 +539,9 @@ function assertTrustedSender(event: IpcMainInvokeEvent): BrowserWindow {
   const trusted = devURL
     ? url.origin === devURL.origin && url.pathname === devURL.pathname
     : url.protocol === 'file:' &&
-      path.resolve(fileURLToPath(url)).toLowerCase() === rendererPath.toLowerCase();
+      (process.platform === 'win32'
+        ? path.resolve(fileURLToPath(url)).toLowerCase() === rendererPath.toLowerCase()
+        : path.resolve(fileURLToPath(url)) === rendererPath);
   if (!trusted) throw new Error('只允许思维便签界面访问本地数据。');
   return window;
 }
@@ -715,7 +771,7 @@ if (!hasInstanceLock) {
       await migrateLegacyData(dataConfiguration.directory, dataConfiguration.legacy);
       store = new MindNoteStore(path.join(app.getPath('userData'), 'mindnote.sqlite'));
       registerBackgroundProtocol(store);
-      Menu.setApplicationMenu(null);
+      configureApplicationMenu();
       registerIPC();
       createStickyWindow();
       createTray();

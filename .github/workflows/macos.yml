@@ -1,0 +1,56 @@
+name: Build and verify macOS installers
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dmg:
+    name: macOS ${{ matrix.arch }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: arm64
+            runner: macos-15
+          - arch: x64
+            runner: macos-15-intel
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install build tools and locked dependencies
+        run: |
+          test "$(node -p process.arch)" = "${{ matrix.arch }}"
+          npm install -g pnpm@11.25.0
+          pnpm install --frozen-lockfile
+          pnpm exec install-electron
+      - name: Test and build
+        run: |
+          pnpm test
+          pnpm make:mac
+      - name: Mount the DMG and exercise the packaged application
+        run: |
+          set -euo pipefail
+          output="out/make/macos/${{ matrix.arch }}"
+          image=("$output"/*.dmg)
+          mount_point="$(mktemp -d)"
+          hdiutil attach "${image[0]}" -nobrowse -readonly -mountpoint "$mount_point"
+          trap 'hdiutil detach "$mount_point"' EXIT
+          test "$(readlink "$mount_point/Applications")" = /Applications
+          codesign --verify --deep --strict "$mount_point/MindNote.app"
+          node scripts/verify-macos.mjs "$mount_point/MindNote.app" "$output"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MindNote-macOS-${{ matrix.arch }}
+          path: out/make/macos/${{ matrix.arch }}/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14
