@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "arch": "arm64",
+  "minSystem": "13.0",
+  "host": "15.8.2",
+  "signature": "ad hoc",
+  "defaultApplicationSupportPath": true,
+  "checks": [
+    "DMG mounted read-only",
+    "app and SQLite Mach-O architecture",
+    "code signature integrity",
+    "native sticky window visible",
+    "task created in sticky window",
+    "main window opened and shared the task",
+    "SQLite persisted task after exit",
+    "sticky window restored the task after relaunch",
+    "SQLite quick_check"
+  ]
+}
