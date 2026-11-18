@@ -5,6 +5,7 @@ import { mkdtemp, writeFile } from 'node:fs/promises';
 import { homedir, tmpdir } from 'node:os';
 import path from 'node:path';
 import { _electron as electron } from 'playwright';
+import Database from 'better-sqlite3';
 
 assert.equal(process.platform, 'darwin');
 const bundle = path.resolve(process.argv[2]);
@@ -86,23 +87,33 @@ try {
 } finally {
   if (session) await session.close();
 }
-assert.deepEqual(errors, []);
 assert.ok(existsSync(sqlitePath));
-const sqlite = (query) =>
-  execFileSync('/usr/bin/sqlite3', ['-readonly', sqlitePath, query], { encoding: 'utf8' }).trim();
-assert.equal(sqlite('PRAGMA quick_check'), 'ok');
-assert.ok(
-  JSON.parse(sqlite('SELECT payload FROM app_snapshot WHERE id=1')).nodes.some((n) => n.title === taskTitle),
-);
-const minSystem = execFileSync(
-  '/usr/libexec/PlistBuddy',
-  ['-c', 'Print :LSMinimumSystemVersion', path.join(bundle, 'Contents/Info.plist')],
-  { encoding: 'utf8' },
-).trim();
+// Reopen the app as a user would, then independently inspect its existing WAL database.
+const reopened = await electron.launch({ executablePath, args: [], env, timeout: 60000 });
+try {
+  const restored = await reopened.firstWindow();
+  restored.on('pageerror', (error) => errors.push(error.message));
+  await restored.getByText(taskTitle, { exact: true }).first().waitFor();
+} finally {
+  await reopened.close();
+}
+assert.deepEqual(errors, []);
+const saved = new Database(sqlitePath, { fileMustExist: true });
+try {
+  saved.pragma('query_only = ON');
+  assert.equal(saved.pragma('quick_check', { simple: true }), 'ok');
+  const { payload } = saved.prepare('SELECT payload FROM app_snapshot WHERE id = 1').get();
+  assert.ok(JSON.parse(payload).nodes.some((n) => n.title === taskTitle));
+} finally {
+  saved.close();
+}
+const plist = JSON.parse(execFileSync('/usr/bin/plutil', [
+  '-convert', 'json', '-o', '-', path.join(bundle, 'Contents/Info.plist'),
+], { encoding: 'utf8' }));
 const report = {
   version: '2.0.0',
   arch: process.arch,
-  minSystem,
+  minSystem: plist.LSMinimumSystemVersion ?? null,
   host: execFileSync('/usr/bin/sw_vers', ['-productVersion'], { encoding: 'utf8' }).trim(),
   signature: 'ad hoc',
   defaultApplicationSupportPath: useDefaultPath,
@@ -114,6 +125,7 @@ const report = {
     'task created in sticky window',
     'main window opened and shared the task',
     'SQLite persisted task after exit',
+    'sticky window restored the task after relaunch',
     'SQLite quick_check',
   ],
 };
